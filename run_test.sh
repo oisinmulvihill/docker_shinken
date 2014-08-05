@@ -7,5 +7,9 @@ sudo docker run -i -t \
     -p 7769:7769 \
     -p 7770:7770 \
     -p 7771:7771 \
-    -v /home/vagrant/host_home/Dropbox/src/scfg:/etc/shinken \
+    -p 7772:7772 \
+    -p 7773:7773 \
+    -v /home/vagrant/host_home/tmp:/data \
+    -v /home/vagrant/host_home/tmp:/logs \
+    -v /home/vagrant/host_home/src/docker_shinken/test_etc:/etc/shinken \
     oisinmulvihill/shinken /bin/start

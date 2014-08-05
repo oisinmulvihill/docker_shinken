@@ -23,6 +23,8 @@ RUN apt-get update
 
 # This will be mounted so can host different set ups:
 RUN mkdir /etc/shinken
+RUN mkdir /data
+RUN mkdir /logs
 
 # Set up the shinken user
 RUN groupadd shinken
@@ -44,6 +46,7 @@ RUN su - shinken -c '/usr/bin/shinken --init'
 RUN su - shinken -c '/usr/bin/shinken install webui'
 RUN su - shinken -c '/usr/bin/shinken install linux-ssh'
 RUN su - shinken -c '/usr/bin/shinken install sqlitedb'
+RUN su - shinken -c '/usr/bin/shinken install auth-cfg-password'
 
 # Scripts to aid usage and management:
 ADD initconfig.sh /bin/initconfig
@@ -53,6 +56,7 @@ ADD start.sh /bin/start
 # system parameters.
 RUN cat /home/shinken/.ssh/id_rsa.pub > /home/shinken/.ssh/authorized_keys
 RUN chmod 600 /home/shinken/.ssh/authorized_keys
+RUN chown shinken:shinken /home/shinken/.ssh/authorized_keys
 
 # run permissions for user `shinken`
 RUN chmod u+s /usr/lib/nagios/plugins/check_icmp
@@ -60,12 +64,22 @@ RUN chmod u+s /bin/ping
 RUN chmod u+s /bin/ping6
 
 VOLUME ["/etc/shinken"]
+VOLUME ["/logs"]
+VOLUME ["/data"]
 
+# webui:
 EXPOSE 7767
 EXPOSE 7768
+# reactionerd:
 EXPOSE 7769
+# arbiter:
 EXPOSE 7770
 EXPOSE 7771
+# broker:
+EXPOSE 7772
+# receiverd:
+EXPOSE 7773
+
 
 # Run shinken as the default. The /etc/shiken will need to be present and
 # error free. If the services don't start this will exit.
