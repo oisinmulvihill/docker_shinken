@@ -83,7 +83,7 @@ code-block:: bash
         -v /home/vagrant/host_home/tmp:/data \
 
         # where the configuration specific to my set lives:
-        -v /home/vagrant/host_home/Dropbox/src/scfg:/etc/shinken \
+        -v /home/vagrant/host_home/src/docker_shinken/test_etc:/etc/shinken \
 
         # The docker image to use :)
         oisinmulvihill/shinken \
@@ -128,3 +128,13 @@ code-block:: bash
     [sudo] password for shinken:
     bin  boot  data  dev  etc  home  lib  lib64  logs  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
     shinken@8a150395d755:~$
+
+
+How am I running docker?
+------------------------
+
+I'm developing with docker, however I'm running on a Mac. If you don't have a
+setup on your Mac to do this, have a look at my other project handy_setups
+https://github.com/oisinmulvihill/handy-setups. The "dockerbox" is a VM using
+virtualbox, vagrant and saltstack which will allow building and running of
+docker images.
