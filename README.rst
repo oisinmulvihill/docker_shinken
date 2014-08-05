@@ -12,14 +12,14 @@ Introduction
 This is currently a work in progress. You need to mount the configuration You
 want shinken to use. For example:
 
-code-block:: bash
+.. code-block:: bash
 
     sudo docker run ... -v /<path to my-config>:/etc/shinken ...
 
 If you don't have any configuration you can create an initial set with the
 "initconfig" command (WARNING: will overwrite any present):
 
-code-block:: bash
+.. code-block:: bash
 
     sudo docker run -i -t -v /home/vagrant/host_home/src/scfg:/etc/shinken oisinmulvihill/shinken /bin/initconfig
     copying initial configuration to /etc/shinken
@@ -30,7 +30,7 @@ Build the docker image
 
 From the checked out source directory a new image can be built as follows:
 
-code-block:: bash
+.. code-block:: bash
 
     sudo docker build -t oisinmulvihill/shinken .
 
@@ -40,7 +40,7 @@ Run the image
 
 I'm currently running manual checks using the following script:
 
-code-block:: bash
+.. code-block:: bash
 
     $ ./run_test.sh
     Starting shinken services.
@@ -65,7 +65,7 @@ code-block:: bash
 This script does the following in interactive mode. You can use as many of the
 following options as you want.
 
-code-block:: bash
+.. code-block:: bash
 
     # For an interactive run (you'll need to strip comments to copy-n-paste)
     sudo docker run -i -t \
@@ -104,7 +104,7 @@ using 'shiken' as the password. The shinken user is set up with sudo access.
 
 For example with the "-p 10022:22" option access can be gained as follows:
 
-code-block:: bash
+.. code-block:: bash
 
     $ ssh shinken@localhost -p 10022
     shinken@localhost's password:
